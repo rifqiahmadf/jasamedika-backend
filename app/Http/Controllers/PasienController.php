@@ -15,7 +15,7 @@ class PasienController extends Controller
 
     public function show($id)
     {
-        $pasien = Pasien::find($id);
+        $pasien = Pasien::with('kelurahan')->find($id);
         if (!$pasien) {
             return response()->json(['message' => 'Pasien not found'], 404);
         }
