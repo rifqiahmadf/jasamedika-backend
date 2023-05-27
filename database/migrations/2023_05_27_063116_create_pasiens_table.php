@@ -27,7 +27,7 @@ class CreatePasiensTable extends Migration
             $table->timestamps();
         });
     }
-    
+
 
     /**
      * Reverse the migrations.

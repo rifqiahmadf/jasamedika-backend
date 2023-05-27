@@ -9,7 +9,7 @@ class Pasien extends Model
 {
     use HasFactory;
 
-    protected $table = 'pasien';
+    protected $table = 'pasiens';
     protected $primaryKey = 'ID_Pasien';
     public $incrementing = false;
     protected $fillable = [

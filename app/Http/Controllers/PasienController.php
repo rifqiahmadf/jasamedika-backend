@@ -9,7 +9,7 @@ class PasienController extends Controller
 {
     public function index()
     {
-        $pasiens = Pasien::all();
+        $pasiens = Pasien::with('kelurahan')->get();
         return response()->json($pasiens);
     }
 
@@ -55,10 +55,13 @@ class PasienController extends Controller
     private function generatePasienId()
     {
         $latestPasien = Pasien::latest()->first();
-        $lastId = $latestPasien ? (int)substr($latestPasien->ID_Pasien, 2) : 0;
+        $lastId = $latestPasien ? (int)substr($latestPasien->ID_Pasien, 4) : 0;
         $newId = $lastId + 1;
         $idPasien = sprintf('%06d', $newId);
-        return date('ym') . $idPasien;
+        $year = date('y');
+        $month = date('m');
+        $formattedId = $year . $month . $idPasien;
+        return $formattedId;
     }
 
     public function update(Request $request, $id)
